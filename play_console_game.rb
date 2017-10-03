@@ -5,10 +5,11 @@ game = Console_game.new
 game.intro
 
 until game.check_winner || game.board.full_board?
+
 	game.display_board
 	game.change_player
 	game.update_board
-	game.display_board
+	# game.display_board
 end
 
 if game.check_winner
