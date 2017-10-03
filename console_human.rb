@@ -10,12 +10,15 @@ class Human
 		puts "Make a move"
 		move = gets.chomp.to_i - 1
 
+	
+ 
+
 		#for the random one use a .sample
 
-		if ttt_board[move] == ""
+		if ttt_board[move] == "" && move <= 9  && move >= 0
 			move
 		else
-			puts "Spot already taken"
+			puts "Invalid Choice"
 			get_move(ttt_board)
 		end
 	end

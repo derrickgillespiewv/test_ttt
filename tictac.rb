@@ -19,7 +19,7 @@ end
 
 def spot_open(position)
 	
-	if @board[position - 1] == 'x' || @board[position - 1] == 'o'
+	if board[position - 1] == 'x' || board[position - 1] == 'o'
 		false
 	elsif position>= 10 || position<= 0
 		false

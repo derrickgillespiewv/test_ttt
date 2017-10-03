@@ -13,6 +13,7 @@ until game.check_winner || game.board.full_board?
 end
 
 if game.check_winner
+	game.display_board
 	puts "#{game.active_player.marker} wins!"
 else
 	puts "The cat got this one!"
