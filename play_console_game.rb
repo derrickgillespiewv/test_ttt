@@ -1,3 +1,4 @@
+
 require_relative 'console_game.rb'
 
 game = Console_game.new

@@ -2,6 +2,7 @@ require_relative 'board.rb'
 require_relative 'console_human.rb'
 require_relative 'console_sequential.rb'
 require_relative 'console_random_ai.rb'
+require_relative 'unbeat.rb'
 
 class Console_game
     attr_accessor :player_1, :player_2, :board, :active_player, :move, :input1, :input2
@@ -13,6 +14,8 @@ class Console_game
         @active_player = player_2
     end
 
+    
+    
     def intro
         puts "Welcome to tic-tac-toe!"
     end
