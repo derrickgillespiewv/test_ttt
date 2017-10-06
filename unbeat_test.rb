@@ -30,6 +30,21 @@ class TestTicTac < Minitest::Test
       assert_equal(4, b_v.get_win_or_block(['','X','','X','','X','','',''], "X"))
       end
 
+       def test_fork_block
+      bv = b_v = Unbeat.new('X')
+      assert_equal(6, b_v.get_fork_or_block(['','','X','','','','','','X'], "X"))
+      end
+
+      def test_fork_block_2
+      bv = b_v = Unbeat.new('X')
+      assert_equal(1, b_v.get_fork_or_block(['X','','','X','','','','',''], "X"))
+      end
+
+      def test_fork_block_3
+      bv = b_v = Unbeat.new('O')
+      assert_equal(6, b_v.get_fork_or_block(['','','','O','','','','O',''], "O"))
+      end
+
       # def test_update
       # b_v = Board.new
       # b_v.update_position(0,"x")
