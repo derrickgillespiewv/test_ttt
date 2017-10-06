@@ -1,3 +1,5 @@
+
+
 require_relative 'board.rb'
 require_relative 'console_human.rb'
 require_relative 'console_sequential.rb'
@@ -119,8 +121,8 @@ class Console_game
         elsif input2 == 3
             @player_2 = Random_AI.new('O')
 
-        elsif input1 == 4
-            @player_1 = Unbeat.new('O')
+        elsif input2 == 4
+            @player_2 = Unbeat.new('O')
 
         else
             puts "Invalid input."

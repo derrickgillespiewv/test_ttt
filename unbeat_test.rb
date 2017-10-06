@@ -84,11 +84,11 @@ class TestTicTac < Minitest::Test
       assert_equal(1, b_v.get_force_def(['X','','','','O','','','','O'],"X","O"))
       end
 
-      def test_attack
-      b_v = Unbeat.new('X')
-     b_v = b_v.get_win_or_block(['','X','','X','','X','','',''], "X")
-      assert_equal(4, b_v.attack)
-      end
+     #  def test_attack
+     #  b_v = Unbeat.new('X')
+     # b_v = b_v.get_win_or_block(['','X','','X','','X','','',''], "X")
+     #  assert_equal(4, b_v.attack)
+     #  end
 
 
 
