@@ -1,4 +1,5 @@
 
+
 class Unbeat
   attr_accessor :marker, :opponent, :center, :corners, :opposite_corners, :diagonals, :edges, :winning_spaces, :fork_spaces, :priorities
 
@@ -38,66 +39,95 @@ def get_opponent(marker)
       # Order in which we should check for wins/forks
       @priorities = [[0, 1, 2], [0, 2, 1], [1, 2, 0]]
 
+    def get_win(ttt_board)
+        get_win_or_block(ttt_board, marker)
+    end
 
+    def get_block(ttt_board)
+        get_win_or_block(ttt_board, opponent)
+    end
 
-   def get_win_or_block(ttt_board, player)
+    def create_fork(ttt_board)
+        get_win_or_block(ttt_board, marker)
+    end
 
-        possible_winning_combos_on_board = [
-      [ttt_board[0], ttt_board[1], ttt_board[2]],
-      [ttt_board[3], ttt_board[4], ttt_board[5]],
-      [ttt_board[6], ttt_board[7], ttt_board[8]],
-      [ttt_board[0], ttt_board[3], ttt_board[6]],
-      [ttt_board[1], ttt_board[4], ttt_board[7]],
-      [ttt_board[2], ttt_board[5], ttt_board[8]],
-      [ttt_board[0], ttt_board[4], ttt_board[8]],
-      [ttt_board[2], ttt_board[4], ttt_board[6]]
-        ]
+    def defend(ttt_board)
+      get_force_def(ttt_board, marker, opponent)
+    end
+
+    def block_fork(ttt_board)
+        get_win_or_block(ttt_board, opponent)
+    end
+
+    def center(ttt_board)
+        get_center(ttt_board)
+    end
+
+    def opp(ttt_board)
+      get_opposite_corner(ttt_board, opponent)
+    end
+
+    def corner(ttt_board)
+      get_corner(ttt_board)
+    end
+
+    def edge(ttt_board)
+      get_edge(ttt_board)
+    end
+
+      def next_move
+        attack || block || create_fork || force_def || block_fork || center || opposite_corner || get_corner || get_edge
+
+      end
+
+      def get_move(ttt_board)
+        move = 70
+
+        if 
+            get_win(ttt_board) <= 8
+            move = get_win(ttt_board)
         
-        possible_winning_combos = winning_spaces
+        elsif
+            create_fork(ttt_board) <= 8
+            move = create_fork(ttt_board)
 
-        move = nil
+        elsif
+            defend(ttt_board) <= 8
+            move = defend(ttt_board)
 
-        possible_winning_combos_on_board.each_with_index do |winning_combo_line, index_position_of_winning_array_set|
-            if winning_combo_line.count(player) == 2 && winning_combo_line.count('') == 1
-                winning_empty_space = winning_combo_line.index('')
-                move = possible_winning_combos[index_position_of_winning_array_set][winning_empty_space]
-            else
-                move
-            end
+        elsif 
+            center(ttt_board) <= 8
+            move = center(ttt_board)
+
+        elsif
+            opp(ttt_board) <= 8
+            move = opp(ttt_board)
+
+        elsif
+            corner(ttt_board) <= 8
+            move = corner(ttt_board)
+
+        elsif
+            edge(ttt_board) <= 8
+            move = edge(ttt_board)
+        else
+            move = ttt_board.index('')
+        
         end
         move
     end
-      
-      def next_move
-        attack || block || create_fork || force_defend || block_fork || center || opposite_corner || get_corner || get_edge
-      end
+end
 
-      def attack
-        if get_win_or_block(@board.ttt_board, @marker) == nil 
-        nil
-        else
-        ttt_board[get_win_or_block] = marker 
-      end
-      end
+      # def attack
+      #   if get_win_or_block(ttt_board, player) == nil 
+      #   nil
+      #   else
+      #  move = ttt_board[get_win_or_block] 
+      #   end
+      #   move
+      #   end
+  
 
-      def block
-        get_win_or_block(ttt_board, opponent)
-      end
-
-      def create_fork
-        get_fork_or_block(ttt_board, marker)
-      end
-
-      def block_fork
-        fork_move(ttt_board, opponent)
-      end
-
-      def center
-        return CENTER if @board.space_available? CENTER
-      end
-
-
-      
       def get_force_def(ttt_board, player, opponent)
       
         possible_diag_combos_on_board =  [ 
@@ -111,7 +141,7 @@ def get_opponent(marker)
          possible_diag_combos = diagonals
 
 
-            move = nil
+            move = 60
 
             possible_diag_combos_on_board.each_with_index do |winning_combo_line, index_position_of_winning_array_set|
             if winning_combo_line.count(player) == 1 && winning_combo_line.count(opponent) == 2
@@ -132,7 +162,7 @@ def get_opponent(marker)
                     move = 7
 
                 else 
-                    move = nil
+                    move = 60
                 end
                      
                 else
@@ -144,7 +174,16 @@ def get_opponent(marker)
     # get_force_def(['','','','','','','','',''],"X","O")
 
 
+    def get_center(ttt_board)
+      move = 90
+      if ttt_board[4] == ''
+        move = 4
+      else
+        move
+      end 
+
       def get_opposite_corner(ttt_board, opponent)
+        move = 70
         if 
             ttt_board[0] == '' && ttt_board[8] == opponent
             move = 0
@@ -162,12 +201,13 @@ def get_opponent(marker)
             ttt_board[8] == '' && ttt_board[0] == opponent
             move = 8
         else 
-            move = nil
+            move = 90
         end
         move
     end
 
       def get_edge(ttt_board)
+        move = 60
         if 
             ttt_board[1] == ''
             move = 1
@@ -185,12 +225,13 @@ def get_opponent(marker)
             move = 7
 
         else 
-            move = nil
+            move = 60
         end
         move
     end
 
  def get_corner(ttt_board)
+       move = 65
         if 
             ttt_board[0] == ''
             move = 0
@@ -208,11 +249,39 @@ def get_opponent(marker)
             move = 8
 
         else 
-            move = nil
+            move = 65
         end
         move
     end
 
+def get_win_or_block(ttt_board, player)
+
+        possible_winning_combos_on_board = [
+      [ttt_board[0], ttt_board[1], ttt_board[2]],
+      [ttt_board[3], ttt_board[4], ttt_board[5]],
+      [ttt_board[6], ttt_board[7], ttt_board[8]],
+      [ttt_board[0], ttt_board[3], ttt_board[6]],
+      [ttt_board[1], ttt_board[4], ttt_board[7]],
+      [ttt_board[2], ttt_board[5], ttt_board[8]],
+      [ttt_board[0], ttt_board[4], ttt_board[8]],
+      [ttt_board[2], ttt_board[4], ttt_board[6]]
+        ]
+        
+        possible_winning_combos = winning_spaces
+
+        move = 20
+
+        possible_winning_combos_on_board.each_with_index do |winning_combo_line, index_position_of_winning_array_set|
+            if winning_combo_line.count(player) == 2 && winning_combo_line.count('') == 1
+                winning_empty_space = winning_combo_line.index('')
+                move = possible_winning_combos[index_position_of_winning_array_set][winning_empty_space]
+            else
+                move
+            end
+        end
+        move
+    end
+      
 
 def get_fork_or_block(ttt_board, player)
 
@@ -228,7 +297,7 @@ def get_fork_or_block(ttt_board, player)
         ]
         possible_fork_combos = fork_spaces
           
-        move = nil
+        move = 30
 
         possible_fork_combos_on_board.each_with_index do |winning_combo_line, index_position_of_winning_array_set|
             if winning_combo_line.count(player) == 2 && winning_combo_line.count('') == 1

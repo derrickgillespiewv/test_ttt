@@ -14,8 +14,8 @@ class Console_game
         @active_player = player_2
     end
 
-    
-    
+
+
     def intro
         puts "Welcome to tic-tac-toe!"
     end
@@ -76,6 +76,7 @@ class Console_game
         1 - Human
         2 - Sequential Computer
         3 - Random Computer
+        4 - Best AI
         """
 
         @input1 = gets.chomp.to_i
@@ -89,6 +90,9 @@ class Console_game
         elsif input1 == 3
             @player_1 = Random_AI.new('X')
 
+        elsif input1 == 4
+            @player_1 = Unbeat.new('X')
+
         else
             puts "Invalid input."
             get_player_1
@@ -101,6 +105,7 @@ class Console_game
         1 - Human
         2 - Sequential Computer
         3 - Random Computer
+        4 - Best AI
         """
 
         @input2 = gets.chomp.to_i
@@ -113,6 +118,9 @@ class Console_game
 
         elsif input2 == 3
             @player_2 = Random_AI.new('O')
+
+        elsif input1 == 4
+            @player_1 = Unbeat.new('O')
 
         else
             puts "Invalid input."
