@@ -48,7 +48,7 @@ def get_opponent(marker)
     end
 
     def create_fork(ttt_board)
-        get_win_or_block(ttt_board, marker)
+        get_fork_or_block(ttt_board, marker)
     end
 
     def defend(ttt_board)
@@ -56,7 +56,7 @@ def get_opponent(marker)
     end
 
     def block_fork(ttt_board)
-        get_win_or_block(ttt_board, opponent)
+        get_fork_or_block(ttt_board, opponent)
     end
 
     def center(ttt_board)
@@ -86,7 +86,11 @@ def get_opponent(marker)
         if 
             get_win(ttt_board) <= 8
             move = get_win(ttt_board)
-        
+     
+        elsif
+            get_block(ttt_board) <= 8
+            move = get_blockttt_board)
+           
         elsif
             create_fork(ttt_board) <= 8
             move = create_fork(ttt_board)
@@ -95,6 +99,9 @@ def get_opponent(marker)
             defend(ttt_board) <= 8
             move = defend(ttt_board)
 
+       elsif
+            block_fork(ttt_board) <= 8
+            move = block_fork(ttt_board)
         elsif 
             center(ttt_board) <= 8
             move = center(ttt_board)
