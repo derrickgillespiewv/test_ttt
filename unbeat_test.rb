@@ -2,6 +2,7 @@
 
 require "minitest/autorun"
 require_relative "unbeat.rb"
+require_relative 'board.rb'
 
 class TestTicTac < Minitest::Test
       
@@ -45,17 +46,44 @@ class TestTicTac < Minitest::Test
       assert_equal(6, b_v.get_fork_or_block(['','','','O','','','','O',''], "O"))
       end
 
-      # def test_update
-      # b_v = Board.new
-      # b_v.update_position(0,"x")
+      def test_edge
+       b_v = Unbeat.new('O')
+      assert_equal(1, b_v.get_edge(['','','','','','','','','']))
+      end
 
-      # assert_equal(['x','','','','','','','',''], b_v.ttt_board )
+
+      def test_edge_2
+       b_v = Unbeat.new('O')
+      assert_equal(3, b_v.get_edge(['','X','','','','','','','']))
+      end
+
+      def test_edge_3
+      b_v = Unbeat.new('O')
+      assert_equal(7, b_v.get_edge(['','X','','X','','X','','','']))
+      end
+
+       def test_corn
+       b_v = Unbeat.new('O')
+      assert_equal(0, b_v.get_corner(['','','X','','','','','','']))
+      end
+
+
+      def test_corn_2
+       b_v = Unbeat.new('O')
+      assert_equal(6, b_v.get_corner(['O','X','O','','','','','','']))
+      end
+
+      def test_corn_3
+      b_v = Unbeat.new('O')
+      assert_equal(8, b_v.get_corner(['0','X','O','X','O','','O','','']))
+      end
+      # def test_attack
+      # b_v = Unbeat.new('X')
+      # b_o = Board.new
+      # b_v.get_opponent("X")
+      # b_v.get_win_or_block(['','','','','','','','','X'], "X")
+      # assert_equal(6, b_v.attack)
       # end
 
-      # def test_update_2
-      # b_v = Board.new
-      # b_v.update_position(0,"x")
-      # b_v.update_position(8,"o")
-      # assert_equal(['x','','','','','','','','o'], b_v.ttt_board )
-      # end
+
 end
