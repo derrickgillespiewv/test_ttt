@@ -77,6 +77,16 @@ class TestTicTac < Minitest::Test
       b_v = Unbeat.new('O')
       assert_equal(8, b_v.get_corner(['0','X','O','X','O','','O','','']))
       end
+
+      def test_force
+      b_v = Unbeat.new('X')
+      assert_equal('O', b_v.get_opponent("X") )
+      assert_equal(1, b_v.get_force_def(['X','','','','O','','','','O'],"X","O"))
+      end
+
+      
+
+
       # def test_attack
       # b_v = Unbeat.new('X')
       # b_o = Board.new
