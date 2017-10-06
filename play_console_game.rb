@@ -10,12 +10,13 @@ until game.check_winner || game.board.full_board?
 	game.display_board
 	game.change_player
 	game.update_board
-	# game.display_board
+	
 end
 
 if game.check_winner
 	game.display_board
 	puts "#{game.active_player.marker} wins!"
 else
+	game.display_board
 	puts "The cat got this one!"
 end
