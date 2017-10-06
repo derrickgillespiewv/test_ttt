@@ -14,6 +14,22 @@ class TestTicTac < Minitest::Test
       b_v = Unbeat.new('O')
       assert_equal('X', b_v.get_opponent("O") )
       end
+
+      def test_win_block
+      bv = b_v = Unbeat.new('X')
+      assert_equal(2, b_v.get_win_or_block(['X','X','','','','','','',''], "X"))
+      end
+
+      def test_win_block_2
+      bv = b_v = Unbeat.new('X')
+      assert_equal(5, b_v.get_win_or_block(['','','','X','X','','','',''], "X"))
+      end
+
+      def test_win_block_3
+      bv = b_v = Unbeat.new('X')
+      assert_equal(4, b_v.get_win_or_block(['','X','','X','','X','','',''], "X"))
+      end
+
       # def test_update
       # b_v = Board.new
       # b_v.update_position(0,"x")
