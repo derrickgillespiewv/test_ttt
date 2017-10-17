@@ -4,6 +4,8 @@ require_relative 'board_app.rb'
 require_relative 'unbeatable_app.rb'
 require_relative 'classes_app.rb'
 enable :sessions
+# load './local_env.rb' if File.exist?('./local_env.rb')
+# Aws.use_bundled_cert!
 
 	get '/' do
 	
@@ -59,6 +61,11 @@ enable :sessions
 
 	get '/board' do
 
+		if session[:active_player] == nil
+
+		redirect '/'
+		else
+		end
 		erb :main_board, :locals => {player1: session[:player1], player2: session[:player2], active_player: session[:active_player].marker, board: session[:board]}
 
 	end
