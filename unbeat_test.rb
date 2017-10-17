@@ -33,7 +33,7 @@ class TestTicTac < Minitest::Test
 
        def test_fork_block
       bv = b_v = Unbeat.new('X')
-      assert_equal(6, b_v.get_fork_or_block(['','','X','','','','','','X'], "X"))
+      assert_equal(6, b_v.get_fork_or_block(['X','','X','','','','','',''], "X"))
       end
 
       def test_fork_block_2

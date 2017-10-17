@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang=''>
+<head>
+   <meta charset='utf-8'>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="style.css">
+   <link rel= "stylesheet" type="text/css" href="css/style.css">
+   <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+   <script src="script.js"></script>
+   <title>Tic-Tac-Toe</title>
+</head>
+
+<body>
+
+  <div id='cssmenu'>
+  Tic-Tac-Toe
+    </ul>
+    <ul id='words'>
+      <li><a href='#'>Home</a></li>
+      <li class='active has-sub'><a href='#'>Links</a>
+        <ul>
+         <li class='active'><a href='https://www.google.com/'>Google</a>
+ 		
+         <li class='active'><a href='http://www.minedminds.org/'>Mined Minds</a>
+
+         <li class='active'><a href='https://stackoverflow.com/'>Stack Overflow</a>
+
+      </ul>
+    </li>
+    <li><a href='#'>About</a></li>
+    <li><a href='#'>Contact</a></li>
+  </ul>
+  </div>
+	
+<center>
+<h1 class='title'>Tic-Tac-Toe</h1>
+<h2 class='title_2'>Please Select Your Players</h2>
+	<form action='/select_players' method='post'>
+	<table>
+		<tr>
+			<td class='bold'>Player 1</td>
+			<td class='bold'>Player 2</td>
+		</tr>
+		<tr>
+			<td>
+				<select name='player1'>
+				    <option value='Human'>Human - X</option>
+				    <option value='Easy'>Easy AI- X</option>
+				    <option value='Medium'>Medium AI - X</option>
+				    <option value='Impossible!'>Impossible AI! - X</option>
+				</select>
+		    </td>
+
+		    <td>
+			    <select name='player2'>
+				    <option value='Human'>Human - O</option>
+				    <option value='Easy'>Easy AI- O</option>
+				    <option value='Medium'>Medium AI- O</option>
+				    <option value='Impossible!'>Impossible AI! - O</option>
+				    <input type="submit" value="Submit">
+				</select>
+		    </td>
+		</tr>
+	</table>
+		
+	</form>
+</center>
+</body>
+</html>

@@ -212,7 +212,7 @@ def get_fork_or_block(ttt_board, player)
         move = 10
 
         possible_fork_combos_on_board.each_with_index do |winning_combo_line, index_position_of_winning_array_set|
-            if winning_combo_line.count(player) == 1 && winning_combo_line.count('') == 1
+            if winning_combo_line.count(player) >= 1 && winning_combo_line.count('') == 1
                 winning_empty_space = winning_combo_line.index('')
                 move = possible_fork_combos[index_position_of_winning_array_set][winning_empty_space]
             else
@@ -261,7 +261,6 @@ def get_win(ttt_board)
   
       def next_move
         attack || block || create_fork || force_def || block_fork || center || opposite_corner || get_corner || get_edge
-
       end
 
       def get_move(ttt_board)

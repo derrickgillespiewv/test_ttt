@@ -1,17 +1,17 @@
 
-require_relative 'web_game.rb'
+require_relative 'console_game'
 require_relative 'board.rb'
 require_relative 'console_human.rb'
 require_relative 'console_sequential.rb'
 require_relative 'console_random_ai.rb'
 require_relative 'unbeat.rb'
 
-class Console_game
-    attr_accessor :player_1, :player_2, :board, :active_player, :move, :input1, :input2
+class Web_game
+    attr_accessor :player_1, :player_2, :board, :active_player, :move, :input1, :input2, :p1, :p2,
 
     def initialize
-        @player_1 = get_player_1
-        @player_2 = get_player_2
+        @player_1 = get_player_1(@p1)
+        @player_2 = get_player_2(@p2)
         @board = Board.new
         @active_player = player_2
     end
@@ -72,7 +72,7 @@ class Console_game
         end
     end
 
-    def get_player_1
+    def get_player_1(web)
         # puts """
         # Please select player 1 by entering a number below.
         # 1 - Human
@@ -82,7 +82,7 @@ class Console_game
         # """
      
 
-             @input1 = gets.chomp.to_i 
+             @input1 = web
    
         if input1 == 1
             @player_1 = Human.new('X')
@@ -103,7 +103,7 @@ class Console_game
     end
     end
 
-    def get_player_2
+    def get_player_2(web)
         # puts """
         # Please select player 2 by entering a number below.
         # 1 - Human
@@ -112,7 +112,7 @@ class Console_game
         # 4 - Best AI
         # """
 
-        @input2 = gets.chomp.to_i
+        @input2 = web
 
         if input2 == 1
             @player_2 = Human.new('O')
