@@ -27,8 +27,11 @@ body {
 	margin-left: auto;
 	margin-bottom: auto;
 
-   	width: 20vw;
-  	height: 20vw;
+    max-width: 40%;
+    max-height: 40%;
+    min-height: 20%;
+    min-width: 20%;
+
   /*  padding-left: 2%;
     padding-right: 2%;
     padding-bottom: 2%;*/

@@ -72,6 +72,12 @@ enable :sessions
 
 	get '/make_move' do
 		
+		if session[:active_player] == nil
+
+		redirect '/'
+		else
+		end
+
 		move = session[:active_player].get_move(session[:board].ttt_board)
 		session[:board].update_position(move, session[:active_player].marker)
 
@@ -95,6 +101,11 @@ enable :sessions
 	end
 
 	get '/check_game_state' do
+		if session[:active_player] == nil
+
+		redirect '/'
+		else
+		end
 	
 		if session[:board].winner?(session[:active_player].marker)
 
@@ -125,6 +136,8 @@ enable :sessions
 	end
 
 	get '/clear_sessions' do
+
+		
 	
 		session[:board] = nil
 		session[:active_player] = nil
