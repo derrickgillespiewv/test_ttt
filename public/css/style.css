@@ -19,7 +19,9 @@ body {
 }
 
 #table_size {
-	overflow: hidden;
+
+	position: center-relative;
+
 	margin-right: auto;
 	margin-top: auto;
 	margin-left: auto;
