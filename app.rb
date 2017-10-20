@@ -122,6 +122,9 @@ db = PG::Connection.new(db_params)
 		redirect '/'
 		else
 		end
+				tic = db.exec("Select * From tic");
+		
+
 	
 		if session[:board].winner?(session[:active_player].marker)
 
@@ -130,10 +133,10 @@ db = PG::Connection.new(db_params)
 					session[:human1] = 'yes' or session[:human2] = 'yes'
 
 
-			db.exec("INSERT INTO tic(name, name2, date, result) VALUES('#{session[:name1]}', '#{session[:name2]}', '#{Time.now}', '#{message}')"
+			db.exec("INSERT INTO tic(name, name2, time, result) VALUES('#{session[:name1]}', '#{session[:name2]}', '#{Time.now}', '#{message}')");
 			else
 			end
-			erb :game_over, :locals => {board: session[:board], message: message}
+			erb :game_over, :locals => {board: session[:board], message: message, tic: tic}
 			
 		elsif session[:board].full_board?
 
@@ -142,10 +145,10 @@ db = PG::Connection.new(db_params)
 					session[:human1] = 'yes' or session[:human2] = 'yes'
 
 
-			db.exec("INSERT INTO tic(name, name2, date, result) VALUES('#{session[:name1]}', '#{session[:name2]}', '#{Time.now}', '#{message}')"
+			db.exec("INSERT INTO tic(name, name2, time, result) VALUES('#{session[:name1]}', '#{session[:name2]}', '#{Time.now}', '#{message}')");
 			else
 			end
-			erb :game_over, :locals => {board: session[:board], message: message}
+			erb :game_over, :locals => {board: session[:board], message: message, tic: tic}
 		
 		else
 			if session[:active_player] == session[:player1]
@@ -160,7 +163,6 @@ db = PG::Connection.new(db_params)
 				redirect '/make_move'
 			end
 		end
-
 	end
 
 	get '/clear_sessions' do
@@ -215,15 +217,3 @@ db = PG::Connection.new(db_params)
 # end 
 
 
-
-# until game.check_winner || game.board.full_board?
-
-# 	# game.display_board
-# 	game.change_player
-# 	game.update_board
-# <script type="text/javascript">
-# document.write ('<p><span id="date-time">', new Date().toLocaleString(), '<\/span>.<\/p>')
-# if (document.getElementById) onload = function () {
-#     setInterval ("document.getElementById ('date-time').firstChild.data = new Date().toLocaleString()", 50)
-# }
-# </script>

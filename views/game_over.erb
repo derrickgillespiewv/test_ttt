@@ -37,12 +37,7 @@
 <h1 class='title_3'><%=message%></h1></center>
 <!-- Message is determined in the app.rb -->
 <!-- Dispalays the values of the final game board -->
-<script type="text/javascript">
-document.write ('<p><span id="date-time">', new Date().toLocaleString(), '<\/span>.<\/p>')
-if (document.getElementById) onload = function () {
-    setInterval ("document.getElementById ('date-time').firstChild.data = new Date().toLocaleString()", 50)
-}
-</script>
+
 <table id="table_size">
     <tr>
         <!-- First row of table, or ttt board -->
@@ -63,10 +58,34 @@ if (document.getElementById) onload = function () {
         <td><div class="win_display"><%=board.ttt_board[8]%></div></td>
     </tr>
 </table>
+
 <center>
-    <!-- Added a link to a picture that will reset the sessions and redirect you to the welcome page to try again -->
+  <link rel="stylesheet" href="./css/style.css">
+<center><h1 class='title'>Tic-Tac-Toe Logs</h1>
+
+<table id="table_size">
+  <tr class="title_3">
+    <th>X</th>
+    <th>O</th>
+    <th>Time</th>
+    <th>Result</th>
+   
+  </tr>
+ 
+<%tic.each do |value|%>
+<tr>
+<td><%=value['name']   %></td>
+<td><%=value['name2']   %></td> 
+<td><%=value['time']   %></td>
+<td><%=value['result']  %></td>
+
+</tr>
+<%end%>
+</table>
 <p class='link'><a href='/clear_sessions'><img src= "./img/again.png" style="width:150px; height:100px;"></a>
+
 </center>
+
 </p>
 </body>
 </html>
