@@ -77,7 +77,6 @@ end
           [ttt_board[2], ttt_board[4], ttt_board[6]]
         ]
 
- # possible_diag_combos_on_board.each_with_index do |winning_combo_line, index_position_of_winning_array_set|
 
 
          possible_diag_combos = diagonals
