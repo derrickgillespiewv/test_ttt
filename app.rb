@@ -1,11 +1,22 @@
-
+require 'rubygems'
 require "sinatra"
 require_relative 'board_app.rb'
 require_relative 'unbeatable_app.rb'
 require_relative 'classes_app.rb'
 enable :sessions
-# load './local_env.rb' if File.exist?('./local_env.rb')
+require 'pg'
+load './local_env.rb' if File.exist?('./local_env.rb')
 # Aws.use_bundled_cert!
+
+db_params = {
+    host: ENV['host'],
+    port: ENV['port'],
+    dbname: ENV['db_name'],
+    user: ENV['user'],
+    password: ENV['password']
+}
+
+db = PG::Connection.new(db_params)
 
 	get '/' do
 	
@@ -14,7 +25,11 @@ enable :sessions
 
 	end
 
-	post '/select_players' do
+	post '/select_players' do 
+
+		session[:name1] = params[:pname1]
+		session[:name2] = params[:pname2]
+
 		session[:player1_type] = params[:player1]
 		session[:player2_type] = params[:player2]
 		session[:human1] = 'no'
@@ -66,6 +81,7 @@ enable :sessions
 		redirect '/'
 		else
 		end
+
 		erb :main_board, :locals => {player1: session[:player1], player2: session[:player2], active_player: session[:active_player].marker, board: session[:board]}
 
 	end
@@ -90,11 +106,11 @@ enable :sessions
 		move = params[:choice].to_i - 1
 		
 		if session[:board].valid_position?(move)
-			puts move
+			
 			session[:board].update_position(move, session[:active_player].marker)
 			redirect '/check_game_state'
 		else
-			puts move
+			
 		 	redirect '/board'
 		end
 
@@ -110,13 +126,25 @@ enable :sessions
 		if session[:board].winner?(session[:active_player].marker)
 
 			message = "#{session[:active_player].marker} is the winner!"
+			if 
+					session[:human1] = 'yes' or session[:human2] = 'yes'
 
+
+			db.exec("INSERT INTO tic(name, name2, date, result) VALUES('#{session[:name1]}', '#{session[:name2]}', '#{Time.now}', '#{message}')"
+			else
+			end
 			erb :game_over, :locals => {board: session[:board], message: message}
-		
+			
 		elsif session[:board].full_board?
 
 			message = "Cat Game!"
-		
+			if 
+					session[:human1] = 'yes' or session[:human2] = 'yes'
+
+
+			db.exec("INSERT INTO tic(name, name2, date, result) VALUES('#{session[:name1]}', '#{session[:name2]}', '#{Time.now}', '#{message}')"
+			else
+			end
 			erb :game_over, :locals => {board: session[:board], message: message}
 		
 		else
@@ -137,7 +165,13 @@ enable :sessions
 
 	get '/clear_sessions' do
 
-		
+		if session[:active_player] == nil
+
+		redirect '/'
+		else
+		end
+
+
 	
 		session[:board] = nil
 		session[:active_player] = nil
@@ -145,6 +179,9 @@ enable :sessions
 		session[:human2] = nil
 		session[:player1_type] = nil
 		session[:player2_type] = nil
+
+		session[:name1] = nil
+		session[:name2] = nil
 
 		redirect '/'
 
@@ -184,3 +221,9 @@ enable :sessions
 # 	# game.display_board
 # 	game.change_player
 # 	game.update_board
+# <script type="text/javascript">
+# document.write ('<p><span id="date-time">', new Date().toLocaleString(), '<\/span>.<\/p>')
+# if (document.getElementById) onload = function () {
+#     setInterval ("document.getElementById ('date-time').firstChild.data = new Date().toLocaleString()", 50)
+# }
+# </script>

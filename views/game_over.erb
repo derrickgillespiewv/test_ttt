@@ -37,6 +37,12 @@
 <h1 class='title_3'><%=message%></h1></center>
 <!-- Message is determined in the app.rb -->
 <!-- Dispalays the values of the final game board -->
+<script type="text/javascript">
+document.write ('<p><span id="date-time">', new Date().toLocaleString(), '<\/span>.<\/p>')
+if (document.getElementById) onload = function () {
+    setInterval ("document.getElementById ('date-time').firstChild.data = new Date().toLocaleString()", 50)
+}
+</script>
 <table id="table_size">
     <tr>
         <!-- First row of table, or ttt board -->
