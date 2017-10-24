@@ -19,7 +19,7 @@ class Console_game
 
 
     def intro
-        # puts "Welcome to tic-tac-toe!"
+        puts "Welcome to tic-tac-toe!"
     end
 
     def display_board
@@ -73,13 +73,13 @@ class Console_game
     end
 
     def get_player_1
-        # puts """
-        # Please select player 1 by entering a number below.
-        # 1 - Human
-        # 2 - Sequential Computer
-        # 3 - Random Computer
-        # 4 - Best AI
-        # """
+        puts """
+        Please select player 1 by entering a number below.
+        1 - Human
+        2 - Sequential Computer
+        3 - Random Computer
+        4 - Best AI
+        """
      
 
              @input1 = gets.chomp.to_i 
@@ -104,13 +104,13 @@ class Console_game
     end
 
     def get_player_2
-        # puts """
-        # Please select player 2 by entering a number below.
-        # 1 - Human
-        # 2 - Sequential Computer
-        # 3 - Random Computer
-        # 4 - Best AI
-        # """
+        puts """
+        Please select player 2 by entering a number below.
+        1 - Human
+        2 - Sequential Computer
+        3 - Random Computer
+        4 - Best AI
+        """
 
         @input2 = gets.chomp.to_i
 

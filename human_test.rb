@@ -18,4 +18,9 @@ class TestTicTac < Minitest::Test
 			b_v = Sequential.new('x')
 			assert_equal(1, b_v.get_move(['x','','','','','','','','']))
 			end
+
+			def test_move_2
+			b_v = Sequential.new('x')
+			assert_equal(1, b_v.get_move(['x','','','','','','','','']))
+			end
 		end

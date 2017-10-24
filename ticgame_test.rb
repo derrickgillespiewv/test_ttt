@@ -21,88 +21,59 @@ class TestTicTac < Minitest::Test
 			b_v.update_position(8,"o")
 			assert_equal(['x','','','','','','','','o'], b_v.ttt_board )
 			end
+
+
+			def test_valid_spot
+			b_v = Board.new
+			b_v.update_position(8,"o")
+			
+			assert_equal(false, b_v.valid_position?(8))
+			end
+
+
+			def test_valid_spot_2
+			b_v = Board.new
+			b_v.update_position(8,"o")
+			
+			assert_equal(true, b_v.valid_position?(7))
+			end
+
+			def test_valid_input
+			b_v = Board.new
+			b_v.update_position(8,"o")
+			
+			assert_equal(false, b_v.valid_input?("k"))
+			end
+
+			def test_valid_input_2
+			b_v = Board.new
+			b_v.update_position(8,"o")
+			
+			assert_equal(true, b_v.valid_input?("x"))
+			end
+
+			def test_full_board
+			b_v = Board.new
+			b_v.ttt_board = ['x','x','x','x','x','x','x','x','o']
+			assert_equal(true, b_v.full_board? )
+			end
+
+			def test_full_board_2
+			b_v = Board.new
+			b_v.ttt_board = ['x','x','x','x','x','x','x','x','']
+			assert_equal(false, b_v.full_board? )
+			end
+
+				def test_win
+			b_v = Board.new
+			b_v.ttt_board = ['x','x','x','x','x','x','x','x','']
+			assert_equal(true, b_v.winner?("x"))
+			end
+
+				def test_win_2
+			b_v = Board.new
+			b_v.ttt_board = ['','','','','','','x','x','']
+			assert_equal(false, b_v.winner?("x"))
+			end
 end
 
-# def get_win(ttt_board)
-#         get_win_or_block(ttt_board, marker)
-#     end
-
-#     def get_block(ttt_board)
-#         get_win_or_block(ttt_board, opponent)
-#     end
-
-#     def create_fork(ttt_board)
-#         get_fork_or_block(ttt_board, marker)
-#     end
-
-#     def defend(ttt_board)
-#       get_force_def(ttt_board, marker, opponent)
-#     end
-
-#     def block_fork(ttt_board)
-#         get_fork_or_block(ttt_board, opponent)
-#     end
-
-#     def center(ttt_board)
-#         get_center(ttt_board)
-#     end
-
-#     def opp(ttt_board)
-#       get_opposite_corner(ttt_board, opponent)
-#     end
-
-#     def corner(ttt_board)
-#       get_corner(ttt_board)
-#     end
-
-#     def edge(ttt_board)
-#       get_edge(ttt_board)
-#     end
-
-
-#       def get_move
-#         move = 70
-
-#         if 
-#             get_win(ttt_board) <= 8
-#             move = get_win(ttt_board)
-     
-#         elsif
-#             get_block(ttt_board) <= 8
-#             move = get_block(ttt_board)
-        
-
-#         elsif
-#             create_fork(ttt_board) <= 8
-#             move = create_fork(ttt_board)
-
-#         elsif
-#             defend(ttt_board) <= 8
-#             move = defend(ttt_board)
-
-#        elsif
-#             block_fork(ttt_board) <= 8
-#             move = block_fork(ttt_board)
-#         elsif 
-#             center(ttt_board) <= 8
-#             move = center(ttt_board)
-
-#         elsif
-#             opp(ttt_board) <= 8
-#             move = opp(ttt_board)
-
-#         elsif
-#             corner(ttt_board) <= 8
-#             move = corner(ttt_board)
-
-#         elsif
-#             edge(ttt_board) <= 8
-#             move = edge(ttt_board)
-#         else
-#             move = ttt_board.index('')
-        
-#         end
-#         move
-#     end
-#     move
-#   end

@@ -65,10 +65,6 @@ class TestTicTac < Minitest::Test
 		assert_equal(['1','2','3','4','5','6','7','8','9'], (set_board))
 	end
 
-	def test_cat_name
-		animal = Cat.new("Fluff")
-		assert_equal("Fluff", animal.name)
-	end
 end
 
 
