@@ -1,3 +1,5 @@
+
+
 class UnbeatableAI
 
 	attr_accessor :marker, :opponent

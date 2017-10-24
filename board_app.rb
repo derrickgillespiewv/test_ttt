@@ -1,3 +1,5 @@
+
+
 class Board
 
 	attr_accessor :ttt_board

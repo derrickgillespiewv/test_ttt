@@ -115,11 +115,17 @@ body {
 	text-shadow: 2px 2px 15px teal;
 	font-family: Times;
 	font-size: 4em;
-
+  font-color: black;
 	font-weight: 500;
 
 }
 
+.list {
+  text-align: center;
+  font-family: Times;
+  font-size: 24pt;
+  color: black;
+}
 #cssmenu,
 #cssmenu ul,
 #cssmenu li,
